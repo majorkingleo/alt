@@ -1,0 +1,6 @@
+select k.namedf ,  s.PROJEKTNR, to_char(st.ZEIT_VON, 'HH24:MI'), to_char(st.ZEIT_BIS, 'HH24:MI'), s.DI
+  from servicetaetigkeiten st,service s,kunden k where TRUNC(st.datum) = TRUNC(sysdate )
+ and k.PROJEKTNR=s.PROJEKTNR
+  and s.di=st.di
+  and st.personalnr = '438'
+/

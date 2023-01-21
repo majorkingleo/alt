@@ -1,0 +1,7 @@
+all: generator
+
+generator: $(OFILES) ../tools/libtools.a
+	$(CXX) -o generator $(OFILES) $(CXXFLAGS) $(LDFLAGS) ../tools/libtools.a
+
+clean:
+	rm -f core* generator $(OFILES)

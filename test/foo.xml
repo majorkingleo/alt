@@ -1,0 +1,17 @@
+<app>
+  <window type="main" title="foo">
+
+    <packbox type="horizontal">
+
+        <button title="hello"/>
+        <button title="world"/>
+
+    </packbox>   
+
+  </window> 
+  <window title="about">
+    <text editable="false">
+      This is a simple test.    
+    </text>
+  </window>
+</app>

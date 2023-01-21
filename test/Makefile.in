@@ -1,0 +1,7 @@
+all: test
+
+test: $(OFILES) ../tools/libtools.a
+	$(CXX) -o test $(OFILES) $(CXXFLAGS) $(LDFLAGS) ../tools/libtools.a
+
+clean:
+	rm -f core* test $(OFILES)

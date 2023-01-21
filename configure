@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if [ $# -gt 0 ] ; then
+  if [ $1 = "-g" ] ; then
+    export NOOPT=1 
+	export CXXFLAGS="$CXXFLAGS -g"
+  fi
+fi
+
+LIBS=". tools shared"
+
+./genmak tools "$LIBS"
+./genmak shared "$LIBS ."
+./genmak generator "$LIBS"
+./genmak test "$LIBS"
+./genmak . "$LIBS" 

@@ -1,0 +1,16 @@
+<app>
+<database>
+
+  <table name="USER" type="innodb">
+     <row type="int" name="id" primary autoincrement/> 
+     <row type="varchar" name="name" lenght="25" unique/>
+     <row type="varchar" name="email" length="50"/>
+  </table>
+
+  <table name="CAR" type="innodb">
+     <row type="int" name="id" primary autoincrement/>
+     <row type="int" name="user" foreign_key="user.id"/>
+  </table>
+
+</database>
+</app>

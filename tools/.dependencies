@@ -1,0 +1,216 @@
+arg.o: arg.cpp arg.h ref.h ../tools_config.h range.h string_utils.h
+backtrace.o: backtrace.cpp backtrace.h format.h ref.h ../tools_config.h
+cppdir.o: cppdir.cpp cppdir.h range.h
+database.o: database.cpp database.h db.h ../tools_config.h mysql_db.h \
+  oracle_db.h odbc_db.h format.h ref.h
+db.o: db.cpp db.h ../tools_config.h
+dbi.o: dbi.cpp string_utils.h format.h ref.h ../tools_config.h db.h dbi.h \
+  database.h range.h debug.h
+debug.o: debug.cpp debug.h format.h ref.h ../tools_config.h
+format.o: format.cpp format.h ref.h ../tools_config.h
+leoini.o: leoini.cpp leoini.h range.h string_utils.h
+mysql_db.o: mysql_db.cpp mysql_db.h ../tools_config.h
+odbc_db.o: odbc_db.cpp odbc_db.h ../tools_config.h
+oracle_db.o: oracle_db.cpp oracle_db.h ../tools_config.h
+pairs.o: pairs.cpp pairs.h
+string_utils.o: string_utils.cpp string_utils.h format.h ref.h \
+  ../tools_config.h
+theme.o: theme.cpp theme.h ../tools_config.h \
+  /usr/local/include/fox-1.7/fx.h /usr/local/include/fox-1.7/fxver.h \
+  /usr/local/include/fox-1.7/fxdefs.h \
+  /usr/local/include/fox-1.7/fxascii.h \
+  /usr/local/include/fox-1.7/fxunicode.h \
+  /usr/local/include/fox-1.7/FXHash.h \
+  /usr/local/include/fox-1.7/FXException.h \
+  /usr/local/include/fox-1.7/FXAutoPtr.h \
+  /usr/local/include/fox-1.7/FXElement.h \
+  /usr/local/include/fox-1.7/FXArray.h \
+  /usr/local/include/fox-1.7/FXThread.h \
+  /usr/local/include/fox-1.7/FXStream.h /usr/local/include/fox-1.7/FXIO.h \
+  /usr/local/include/fox-1.7/FXFile.h /usr/local/include/fox-1.7/FXPipe.h \
+  /usr/local/include/fox-1.7/FXSocket.h \
+  /usr/local/include/fox-1.7/FXFileStream.h \
+  /usr/local/include/fox-1.7/FXMemoryStream.h \
+  /usr/local/include/fox-1.7/FXString.h \
+  /usr/local/include/fox-1.7/FXDLL.h /usr/local/include/fox-1.7/FXSize.h \
+  /usr/local/include/fox-1.7/FXPoint.h \
+  /usr/local/include/fox-1.7/FXRectangle.h \
+  /usr/local/include/fox-1.7/FXObject.h \
+  /usr/local/include/fox-1.7/FXDelegator.h \
+  /usr/local/include/fox-1.7/FXDict.h /usr/local/include/fox-1.7/FXPath.h \
+  /usr/local/include/fox-1.7/FXSystem.h \
+  /usr/local/include/fox-1.7/FXStat.h /usr/local/include/fox-1.7/FXDir.h \
+  /usr/local/include/fox-1.7/FXDate.h /usr/local/include/fox-1.7/FXURL.h \
+  /usr/local/include/fox-1.7/FXStringDict.h \
+  /usr/local/include/fox-1.7/FXSettings.h \
+  /usr/local/include/fox-1.7/FXRegistry.h \
+  /usr/local/include/fox-1.7/FXObjectList.h \
+  /usr/local/include/fox-1.7/FXAccelTable.h \
+  /usr/local/include/fox-1.7/FXRecentFiles.h \
+  /usr/local/include/fox-1.7/FXApp.h /usr/local/include/fox-1.7/FXId.h \
+  /usr/local/include/fox-1.7/FXVisual.h \
+  /usr/local/include/fox-1.7/FXFont.h \
+  /usr/local/include/fox-1.7/FXCursor.h \
+  /usr/local/include/fox-1.7/FXMessageChannel.h \
+  /usr/local/include/fox-1.7/FXCURCursor.h \
+  /usr/local/include/fox-1.7/FXGIFCursor.h \
+  /usr/local/include/fox-1.7/FXDrawable.h \
+  /usr/local/include/fox-1.7/FXBitmap.h \
+  /usr/local/include/fox-1.7/FXImage.h \
+  /usr/local/include/fox-1.7/FXIcon.h \
+  /usr/local/include/fox-1.7/FXBMPImage.h \
+  /usr/local/include/fox-1.7/FXGIFImage.h \
+  /usr/local/include/fox-1.7/FXICOImage.h \
+  /usr/local/include/fox-1.7/FXIFFImage.h \
+  /usr/local/include/fox-1.7/FXJPGImage.h \
+  /usr/local/include/fox-1.7/FXPCXImage.h \
+  /usr/local/include/fox-1.7/FXPNGImage.h \
+  /usr/local/include/fox-1.7/FXPPMImage.h \
+  /usr/local/include/fox-1.7/FXRASImage.h \
+  /usr/local/include/fox-1.7/FXRGBImage.h \
+  /usr/local/include/fox-1.7/FXTGAImage.h \
+  /usr/local/include/fox-1.7/FXTIFImage.h \
+  /usr/local/include/fox-1.7/FXXBMImage.h \
+  /usr/local/include/fox-1.7/FXXPMImage.h \
+  /usr/local/include/fox-1.7/FXBMPIcon.h \
+  /usr/local/include/fox-1.7/FXGIFIcon.h \
+  /usr/local/include/fox-1.7/FXICOIcon.h \
+  /usr/local/include/fox-1.7/FXIFFIcon.h \
+  /usr/local/include/fox-1.7/FXJPGIcon.h \
+  /usr/local/include/fox-1.7/FXPCXIcon.h \
+  /usr/local/include/fox-1.7/FXPNGIcon.h \
+  /usr/local/include/fox-1.7/FXPPMIcon.h \
+  /usr/local/include/fox-1.7/FXRASIcon.h \
+  /usr/local/include/fox-1.7/FXRGBIcon.h \
+  /usr/local/include/fox-1.7/FXTGAIcon.h \
+  /usr/local/include/fox-1.7/FXTIFIcon.h \
+  /usr/local/include/fox-1.7/FXXBMIcon.h \
+  /usr/local/include/fox-1.7/FXXPMIcon.h \
+  /usr/local/include/fox-1.7/FXRegion.h /usr/local/include/fox-1.7/FXDC.h \
+  /usr/local/include/fox-1.7/FXDCWindow.h \
+  /usr/local/include/fox-1.7/FXDCPrint.h \
+  /usr/local/include/fox-1.7/FXIconSource.h \
+  /usr/local/include/fox-1.7/FXIconDict.h \
+  /usr/local/include/fox-1.7/FXFileDict.h \
+  /usr/local/include/fox-1.7/FXWindow.h \
+  /usr/local/include/fox-1.7/FXFrame.h \
+  /usr/local/include/fox-1.7/FXSeparator.h \
+  /usr/local/include/fox-1.7/FXLabel.h \
+  /usr/local/include/fox-1.7/FX7Segment.h \
+  /usr/local/include/fox-1.7/FXDial.h /usr/local/include/fox-1.7/FXKnob.h \
+  /usr/local/include/fox-1.7/FXColorBar.h \
+  /usr/local/include/fox-1.7/FXColorRing.h \
+  /usr/local/include/fox-1.7/FXColorWell.h \
+  /usr/local/include/fox-1.7/FXColorWheel.h \
+  /usr/local/include/fox-1.7/FXTextField.h \
+  /usr/local/include/fox-1.7/FXButton.h \
+  /usr/local/include/fox-1.7/FXPicker.h \
+  /usr/local/include/fox-1.7/FXToggleButton.h \
+  /usr/local/include/fox-1.7/FXTriStateButton.h \
+  /usr/local/include/fox-1.7/FXCheckButton.h \
+  /usr/local/include/fox-1.7/FXRadioButton.h \
+  /usr/local/include/fox-1.7/FXArrowButton.h \
+  /usr/local/include/fox-1.7/FXMenuButton.h \
+  /usr/local/include/fox-1.7/FXComposite.h \
+  /usr/local/include/fox-1.7/FXPacker.h \
+  /usr/local/include/fox-1.7/FXHorizontalFrame.h \
+  /usr/local/include/fox-1.7/FXVerticalFrame.h \
+  /usr/local/include/fox-1.7/FXSpring.h \
+  /usr/local/include/fox-1.7/FXMatrix.h \
+  /usr/local/include/fox-1.7/FXSpinner.h \
+  /usr/local/include/fox-1.7/FXRealSpinner.h \
+  /usr/local/include/fox-1.7/FXRootWindow.h \
+  /usr/local/include/fox-1.7/FXCanvas.h \
+  /usr/local/include/fox-1.7/FXGroupBox.h \
+  /usr/local/include/fox-1.7/FXShell.h \
+  /usr/local/include/fox-1.7/FXToolTip.h \
+  /usr/local/include/fox-1.7/FXPopup.h \
+  /usr/local/include/fox-1.7/FXTopWindow.h \
+  /usr/local/include/fox-1.7/FXDialogBox.h \
+  /usr/local/include/fox-1.7/FXMainWindow.h \
+  /usr/local/include/fox-1.7/FXMenuPane.h \
+  /usr/local/include/fox-1.7/FXScrollPane.h \
+  /usr/local/include/fox-1.7/FXMenuCaption.h \
+  /usr/local/include/fox-1.7/FXMenuSeparator.h \
+  /usr/local/include/fox-1.7/FXMenuTitle.h \
+  /usr/local/include/fox-1.7/FXMenuCascade.h \
+  /usr/local/include/fox-1.7/FXMenuCommand.h \
+  /usr/local/include/fox-1.7/FXMenuCheck.h \
+  /usr/local/include/fox-1.7/FXMenuRadio.h \
+  /usr/local/include/fox-1.7/FXMenuBar.h \
+  /usr/local/include/fox-1.7/FXToolBar.h \
+  /usr/local/include/fox-1.7/FXDockBar.h \
+  /usr/local/include/fox-1.7/FXOptionMenu.h \
+  /usr/local/include/fox-1.7/FXSwitcher.h \
+  /usr/local/include/fox-1.7/FXTabBar.h \
+  /usr/local/include/fox-1.7/FXTabBook.h \
+  /usr/local/include/fox-1.7/FXTabItem.h \
+  /usr/local/include/fox-1.7/FXScrollBar.h \
+  /usr/local/include/fox-1.7/FXScrollArea.h \
+  /usr/local/include/fox-1.7/FXScrollWindow.h \
+  /usr/local/include/fox-1.7/FXList.h \
+  /usr/local/include/fox-1.7/FXComboBox.h \
+  /usr/local/include/fox-1.7/FXListBox.h \
+  /usr/local/include/fox-1.7/FXTreeList.h \
+  /usr/local/include/fox-1.7/FXTreeListBox.h \
+  /usr/local/include/fox-1.7/FXFoldingList.h \
+  /usr/local/include/fox-1.7/FXBitmapView.h \
+  /usr/local/include/fox-1.7/FXBitmapFrame.h \
+  /usr/local/include/fox-1.7/FXImageView.h \
+  /usr/local/include/fox-1.7/FXImageFrame.h \
+  /usr/local/include/fox-1.7/FXTable.h \
+  /usr/local/include/fox-1.7/FXDragCorner.h \
+  /usr/local/include/fox-1.7/FXStatusBar.h \
+  /usr/local/include/fox-1.7/FXStatusLine.h \
+  /usr/local/include/fox-1.7/FXChoiceBox.h \
+  /usr/local/include/fox-1.7/FXMessageBox.h \
+  /usr/local/include/fox-1.7/FXDirList.h \
+  /usr/local/include/fox-1.7/FXSlider.h \
+  /usr/local/include/fox-1.7/FXRealSlider.h \
+  /usr/local/include/fox-1.7/FXRangeSlider.h \
+  /usr/local/include/fox-1.7/FXSplitter.h \
+  /usr/local/include/fox-1.7/FX4Splitter.h \
+  /usr/local/include/fox-1.7/FXHeader.h \
+  /usr/local/include/fox-1.7/FXShutter.h \
+  /usr/local/include/fox-1.7/FXIconList.h \
+  /usr/local/include/fox-1.7/FXFileList.h \
+  /usr/local/include/fox-1.7/FXDirBox.h \
+  /usr/local/include/fox-1.7/FXDriveBox.h \
+  /usr/local/include/fox-1.7/FXDirSelector.h \
+  /usr/local/include/fox-1.7/FXDirDialog.h \
+  /usr/local/include/fox-1.7/FXFileSelector.h \
+  /usr/local/include/fox-1.7/FXFileDialog.h \
+  /usr/local/include/fox-1.7/FXColorSelector.h \
+  /usr/local/include/fox-1.7/FXColorDialog.h \
+  /usr/local/include/fox-1.7/FXFontSelector.h \
+  /usr/local/include/fox-1.7/FXFontDialog.h \
+  /usr/local/include/fox-1.7/FXUndoList.h \
+  /usr/local/include/fox-1.7/FXRex.h /usr/local/include/fox-1.7/FXText.h \
+  /usr/local/include/fox-1.7/FXDataTarget.h \
+  /usr/local/include/fox-1.7/FXProgressBar.h \
+  /usr/local/include/fox-1.7/FXReplaceDialog.h \
+  /usr/local/include/fox-1.7/FXRuler.h \
+  /usr/local/include/fox-1.7/FXRulerView.h \
+  /usr/local/include/fox-1.7/FXSearchDialog.h \
+  /usr/local/include/fox-1.7/FXInputDialog.h \
+  /usr/local/include/fox-1.7/FXProgressDialog.h \
+  /usr/local/include/fox-1.7/FXWizard.h \
+  /usr/local/include/fox-1.7/FXMDIButton.h \
+  /usr/local/include/fox-1.7/FXMDIClient.h \
+  /usr/local/include/fox-1.7/FXMDIChild.h \
+  /usr/local/include/fox-1.7/FXDocument.h \
+  /usr/local/include/fox-1.7/FXDockSite.h \
+  /usr/local/include/fox-1.7/FXDockHandler.h \
+  /usr/local/include/fox-1.7/FXDockTitle.h \
+  /usr/local/include/fox-1.7/FXToolBarGrip.h \
+  /usr/local/include/fox-1.7/FXToolBarShell.h \
+  /usr/local/include/fox-1.7/FXToolBarTab.h \
+  /usr/local/include/fox-1.7/FXPrintDialog.h \
+  /usr/local/include/fox-1.7/FXDebugTarget.h \
+  /usr/local/include/fox-1.7/FXCalendarView.h \
+  /usr/local/include/fox-1.7/FXCalendar.h \
+  /usr/local/include/fox-1.7/FXGradientBar.h \
+  /usr/local/include/fox-1.7/FXConsole.h \
+  /usr/local/include/fox-1.7/FXSplashWindow.h
+thread.o: thread.cpp thread.h ../tools_config.h
+xml.o: xml.cpp xml.h ref.h ../tools_config.h string_utils.h

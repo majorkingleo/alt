@@ -1,0 +1,43 @@
+  <database file_sql="create.sql" file_h="db_struct.h" file_cpp="db_struct.cpp">
+	<table name="FES" type="innodb">
+		<row type="int"      name="id" primary autoincrement null="false"/>
+		<row type="varchar"  name="description" length="50" null="false"/>
+		<row type="varchar"  name="feldid" length="50" unique null="false"/>
+	</table>
+	<table name="BOOKS" type="innodb">
+		<row type="int"      name="id" primary autoincrement null="false"/>
+		<row type="enum"     name="type"   values="BOOK,CD,DVD,VHS" default="BOOK" null="false"/>
+		<row type="varchar"  name="title"  length="255" null="false"/>
+		<row type="varchar"  name="author" length="100" null="false"/>
+		<row type="text"     name="description" null="false"/>
+		<row type="varchar"  name="isbn" length="50" null="false"/>
+		<row type="varchar"  name="identifier" length="50" null="false"/>
+		<row type="varchar"  name="location"   length="50" foreign="fes.feldid" null="false"/>
+		<row type="varchar"  name="owner"      length="50" null="false"/>
+		<row type="varchar"  name="comment"    length="50" null="false"/>
+	</table>
+	<table name="NOTES_HEADS" type="innodb">
+		<row type="int"	name="id" primary autoincrement/>
+		<row type="varchar" name="title" length="50"/>
+		<row type="int" name="hist_anzeit"/>
+		<row type="int" name="hist_aezeit"/>
+		<row type="enum" name="status" values="OPEN,PENDING,CLOSED" 
+			default="OPEN"/>
+	</table>
+	<table name="NOTES_LINES" type="innodb">
+		<row type="int"  name="id" primary autoincrement/>
+		<row type="int"  name="head_id" foreign_key="NOTES_HEADS.id"/>
+		<row type="int"  name="hist_anzeit"/>
+		<row type="int"  name="hist_aezeit"/>
+		<row type="text" name="note"/>
+		<row type="enum" name="type" values="NOTE,ALERT"/>
+		<row type="enum" name="status" values="OPEN,PENDING,CLOSED" default="OPEN"/>
+	</table>	
+	<table name="SEQUENCE" type="innodb">
+	   <row type="varchar" name="name" length="25" primary unique/>
+	   <row type="int" name="from"/>
+	   <row type="int" name="to"/>
+	   <row type="int" name="nextval"/>
+	   <row type="varchar" name="format" length="50"/>
+	</table>
+  </database>

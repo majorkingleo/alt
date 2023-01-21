@@ -1,0 +1,125 @@
+<define name="app">
+	<option name="name" type="string" required/>
+</define>
+
+<define name="database">
+	<option name="file_sql" required/>
+	<option name="file_h" required/>
+	<option name="file_cpp" required/>
+	<parent name="app" strict/>
+</define>
+
+<define name="table">
+	<option name="name" type="string" required/>
+	<option name="type" type="enum" values="INNODB,MYISAM" default="INNODB"/>
+	<parent name="database" strict/>
+</define>
+
+<define name="row">
+	<option name="type" type="enum" values="int,varchar,enum,text" required/>
+	<option name="name" type="string" required/>
+	<option name="values" type="string"/>
+	<option name="primary" type="bool" default="false"/>
+	<option name="autoincrement" type="bool" default="false"/>
+	<option name="null" type="bool" default="false"/>
+	<option name="unique" type="bool" default="false"/>
+	<option name="length" type="int" default="255"/>
+	<option name="default" type="string"/>
+	<option name="foreign_key" type="string"/>
+	<parent name="table" strict/>
+</define>
+
+<define name="gui">
+	<parent name="app" strict/>
+</define>
+
+<define name="window">
+	<option name="name" type="string" required/>
+	<option name="file_h" type="string" required/>
+	<option name="file_cpp" type="string" required/>
+	<option name="title" type="string" required/>
+	<option name="data" type="string"/>
+	<option name="on_load" type="string"/>
+	<parent name="gui" strict/>
+</define>
+
+<define name="widget">
+	<option name="layout" type="string"/>
+	<option name="name"/>
+	<parent name="window"/>
+</define>
+
+<define name="edit_widget" parent="widget">
+	<option name="name" type="string" required/>
+	<option name="db_ref" type="string"/>
+	<option name="callback" type="string"/>
+	<option name="tooltip" type="string"/>
+	<children none/>
+</define>
+
+<define name="cmd_widget" parent="widget">
+	<option name="name" type="string" required/>
+	<option name="callback" type="string"/>
+	<option name="title" type="string"/>
+	<option name="icon" type="string"/>
+	<children none/>
+</define>
+
+<define name="label" parent="widget">
+	<option name="title" type="string" required/>
+	<children none/>
+</define>
+
+<define name="__frame" parent="widget">
+	<option name="nopadding" type="bool" default="false"/>
+</define>
+
+<define name="hframe" parent="__frame"/>
+<define name="vframe" parent="__frame"/>
+
+<define name="matrix" parent="widget">
+	<option name="fields" type="int" required/>
+</define>
+
+<define name="hseparator" parent="widget">
+	<children none/>
+</define>
+
+<define name="vseparator" parent="widget">
+	<children none/>
+</define>
+
+<define name="group" parent="widget">
+	<option name="title" type="string" required/>
+	<option name="layout" type="string" default="LAYOUT_FILL_X,LAYOUT_FILL_Y,FRAME_RIDGE" add/>
+</define>
+
+<define name="button" parent="cmd_widget">
+	<option name="title" type="string" required/>
+	<option name="icon" type="string"/>
+</define>
+
+<define name="combobox" parent="cmd_widget">
+	<option name="db_ref" type="string"/>
+	<option name="layout" type="string" 
+			default="FRAME_SUNKEN,FRAME_THICK,TEXTFIELD_LIMITED" add/>
+	<option name="autocase" type="bool" default="false"/>
+	<option name="readonly" type="bool" default="false"/>
+	<option name="autoload" type="string"/>
+</define>
+
+<define name="entry" parent="edit_widget">
+	<option name="width"/>
+	<option name="readonly" type="bool" default="false"/>
+	<option name="layout" type="string" 
+			default="TEXTFIELD_LIMITED,FRAME_SUNKEN,FRAME_THICK" add/>
+</define>
+
+<define name="dbentry" parent="edit_widget">
+	<option name="width"/>
+	<option name="readonly" type="bool" default="false"/>
+	<option name="layout" type="string" 
+			default="TEXTFIELD_LIMITED,FRAME_SUNKEN,FRAME_THICK" add/>
+</define>
+
+<define name="text" parent="edit_widget"/>

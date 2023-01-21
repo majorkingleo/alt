@@ -1,0 +1,6 @@
+
+libshared.a: $(OFILES)
+	ar r libshared.a $(OFILES)
+
+clean:
+	rm -f core* libshared.a $(OFILES)

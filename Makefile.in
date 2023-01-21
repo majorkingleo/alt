@@ -1,0 +1,38 @@
+PACKAGE=dbi
+DIST=$(PACKAGE)-$(VERSION)
+
+prefix=$(DESTDIR)/usr/local
+bindir=$(prefix)/bin
+docdir=$(prefix)/share/doc/$(PACKAGE)
+
+all: alt 
+
+alt: $(OFILES) tools/libtools.a shared/libshared.a
+	$(CXX) -o alt $(OFILES) $(CXXFLAGS) $(LDFLAGS) tools/libtools.a shared/libshared.a
+
+clean:
+	rm -f core* dbi $(OFILES)
+	cd tools && make clean
+	cd shared && make clean
+
+tools/libtools.a:
+	cd tools && make
+
+shared/libshared.a:
+	cd shared && make
+
+dist: clean
+	rm -rf $(DIST)
+	rm -f $(DIST).tar.gz
+	mkdir $(DIST)
+	cp $(CFILES) $(HFILES) README COPYING INSTALL genmak configure Makefile.in $(DIST)
+	find $(DIST) -name "CVS" | xargs rm -rf
+	tar cvf $(DIST).tar $(DIST)
+	gzip --best $(DIST).tar
+	rm -rf $(DIST)
+
+install: dbi
+	if ! [ -d $(bindir) ] ; then mkdir -p $(bindir) ; fi
+	cp dbi $(bindir)
+	if ! [ -d $(docdir) ] ; then mkdir -p $(docdir) ; fi
+	cp README COPYING $(docdir)

@@ -1,0 +1,182 @@
+#include "defines.xml"
+
+<declare name="button_ok_cancel_del">
+	<option name="cb_ok" default="button_ok"/>
+	<option name="cb_del" default="button_del"/>
+	<option name="cb_cancel" default="button_cancel"/>
+
+	<implement>	
+	    <hframe layout="LAYOUT_FILL_X|LAYOUT_SIDE_BOTTOM">
+			<button name="del" title="Loeschen" callback="::cb_del" icon="edittrash"/>
+	   		<hframe type="horizontal" 
+					layout="LAYOUT_RIGHT|PACK_UNIFORM_WIDTH|PACK_UNIFORM_HEIGHT">
+				<button name="ok" title="Ok" callback="::cb_ok" icon="button_ok"/>
+				<button name="cancel" title="Abbrechen" callback="::cb_cancel" 
+							layout="BUTTON_DEFAULT|BUTTON_NORMAL" icon="button_cancel"/>
+			</hframe>
+	   </hframe>		
+	</implement>
+</declare>
+
+<declare name="dtext">
+	<option name="title" required/>
+	<option name="name"  required/>
+	<option name="db_ref"/>
+
+	<implement>
+		<group title="::title" layout="LAYOUT_FILL_X|FRAME_RIDGE">
+			<hframe layout="LAYOUT_FILL_X,FRAME_SUNKEN,FRAME_THICK" nopadding="true">
+				<text name="::name" layout="LAYOUT_FILL_X" db_ref="::db_ref"/>
+		</group>
+	</implement>
+</declare>
+
+<app name="alt">
+#include "database.xml"
+  <gui>
+
+	<window name="BOOK" file_h="book.h" file_cpp="book.cpp" 
+			title="Buecher" data="BOOKS:book" on_load="on_load">
+		<group title="Buecher warten" name="foo">
+			<hframe layout="LAYOUT_FILL_X">
+				<label title="Id:" layout="LAYOUT_CENTER_Y"/>
+				<combobox name="f_id" db_ref="book.id" autoload="BOOKS:id"/>
+				<combobox name="f_type" db_ref="book.type" autocase readonly/>
+	   			<hframe layout="LAYOUT_RIGHT|PACK_UNIFORM_WIDTH" nopadding>
+					<button name="b_lesen" title="Lesen" callback="button_lesen"
+							icon="button_read"/>
+					<button name="b_neu" title="Neu" callback="button_neu" icon="filenew"/>
+				</hframe>
+			</hframe>
+
+			<dtext title="Titel" name="f_title" db_ref="book.title"/>
+
+			<hframe>
+				<label title="Author:" layout="LAYOUT_CENTER_Y"/>
+				<combobox name="f_author" db_ref="book.author" autoload="BOOKS:author"/>
+			</hframe>
+
+			<dtext title="Beschreibung" name="f_description" db_ref="book.description"/>
+
+			<matrix fields="5">
+				<label title="ISBN:"/>
+				<label title="Ref:"/>
+				<label title="Ort:"/>
+				<label title="Besitzer:"/>
+				<label title="Kommentar:"/>
+				<entry name="f_isbn" db_ref="book.isbn"/>
+				<entry name="f_ref" db_ref="book.identifier" callback="onBarcode"/>
+				<combobox name="f_location" db_ref="book.location" readonly autoload="FES:feldid"/>
+				<combobox name="f_owner" db_ref="book.owner" autoload="BOOKS:owner"/>
+				<entry name="f_comment" db_ref="book.comment"/>
+			</matrix>
+
+			<hseparator/>
+
+			<button_ok_cancel_del/>
+
+		</group>
+    </window>
+
+     <window name="FES" file_h="fes.h" file_cpp="fes.cpp" title="Feldstamm" 
+			data="FES:fes" on_load="on_load">
+	<group title="Feldstamm warten">
+		<hframe>
+			<label title="Feldid:" layout="LAYOUT_CENTER_Y"/>
+			<combobox name="feldid" db_ref="fes.feldid" 
+						callback="button_combo_changed" autoload="FES:feldid"/>
+			<button name="lesen" title="Lesen" callback="button_lesen" icon="button_read"/>
+			<button name="neu" title="Neu" callback="button_neu" icon="filenew"/>
+		</hframe>
+
+		<dtext title="Description" name="description" db_ref="fes.description"/>
+		<button_ok_cancel_del/>
+
+	</group>
+     </window>
+
+
+	<window name="Notes" file_h="notes.h" file_cpp="notes.cpp"
+			title="Notitzen" on_load="on_load" 
+			data="NOTES_HEADS:notes_heads,NOTES_LINES:notes_lines,FXTable*:positionen">
+		<group title="Notitzen warten">
+			<hframe layout="LAYOUT_FILL_X">
+				<label title="Titel"/>
+				<combobox name="head_title" db_ref="notes_heads.title"
+					autoload="NOTES_HEADS:title" callback="button_combo_changed"/>
+				<combobox name="head_status" db_ref="notes_heads.status" autocase readonly/>
+				<hframe layout="LAYOUT_RIGHT|PACK_UNIFORM_WIDTH" nopadding>
+					<button name="lesen" title="Lesen" callback="button_head_lesen" 
+							icon="button_read"/>
+					<button name="neu" title="Neu" 
+							callback="button_head_neu" icon="filenew"/>
+				</hframe>
+			</hframe>
+			<group title="Positionen" layout="LAYOUT_FILL_X|FRAME_RIDGE">
+				<hframe name="pos_parent" layout="LAYOUT_FILL_X" nopadding>
+				
+				</hframe>
+				<hframe layout="LAYOUT_RIGHT|PACK_UNIFORM_WIDTH" nopadding>
+					<button name="p_del" title="Loeschen" 
+							callback="button_pos_del" icon="edittrash"/>
+					<button name="p_neu" title="Neu" 
+							callback="button_pos_neu" icon="filenew"/>
+				</hframe>
+			</group>
+		<button_ok_cancel_del/>
+		</group>	
+	</window>
+
+     <window name="DBSettings" file_h="db_settings.h" file_cpp="db_settings.cpp" 
+		title="Datanbankeinstellungen" on_load="on_load">
+	<group title="Datenbankeinstellungen">
+	    <matrix fields="4">
+			<label title="Host"/>
+			<label title="Datenbank"/>
+			<label title="Benutzername"/>
+			<label title="Passwort:"/>
+			<entry name="host"/>
+			<entry name="database"/>
+			<entry name="username"/>
+			<entry name="password" layout="FRAME_SUNKEN|FRAME_THICK|TEXTFIELD_PASSWD"/>
+	   </matrix>
+	   <hseparator/>
+	   <hframe layout="LAYOUT_FILL_X">
+	     <hframe layout="LAYOUT_CENTER_X|PACK_UNIFORM_WIDTH|PACK_UNIFORM_HEIGHT">
+			<button name="botton_ok" title="ok" callback="on_ok" icon="button_ok"/>
+			<button name="button_test" title="Testen" callback="on_test" icon="wizard"/>
+			<button name="butten_cancel" title="Abbrechen" callback="on_cancel" 
+					icon="button_cancel"/>
+         </hframe>
+	    </hframe>
+	</group>
+     </window>
+
+     <window name="Sequences" file_h="sequences.h" file_cpp="sequences.cpp"
+        title="Sequencen warten" data="SEQUENCE:sequence" on_load="on_load">
+	<group title="Sequencen warten">
+	   <hframe name="spread_parent" layout="LAYOUT_FILL_X" nopadding/>
+	   <button_ok_cancel_del/>
+	</group>
+     </window>
+
+          <window name="Sequence" file_h="sequence.h" file_cpp="sequence.cpp"
+	  	  title="Sequence warten" data="SEQUENCE:sequence">
+		  <group title="Sequence warten">
+		     <matrix fields="5">
+		        <label title="Name:"/>
+			<label title="Von:"/>
+			<label title="Bis:"/>
+			<label title="Naechster Wert:"/>
+			<label title="Format:"/>
+			<dbentry name="name" db_ref="sequence.name"/>
+			<dbentry name="from" db_ref="sequence.from"/>
+			<dbentry name="to" db_ref="sequence.to"/>
+			<dbentry name="nextval" db_ref="sequence.nextval"/>
+			<dbentry name="format" db_ref="sequence.format" tooltip="Verwenden %d fuer die Zahl"/>
+		     </matrix>
+		     <button_ok_cancel_del/>
+		  </group>
+	  </window>
+  </gui>
+</app>

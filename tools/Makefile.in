@@ -1,0 +1,6 @@
+
+libtools.a: $(OFILES)
+	ar r libtools.a $(OFILES)
+
+clean:
+	rm -f core* libtools.a $(OFILES)
